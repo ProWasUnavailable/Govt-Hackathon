@@ -122,7 +122,7 @@ class _PlaceholderWidgetState extends State<PlaceholderWidget> {
                 },
                 text: '',
                 icon: const Icon(
-                  Icons.house_sharp,
+                  Icons.home,
                   size: 30.0,
                 ),
                 options: FFButtonOptions(

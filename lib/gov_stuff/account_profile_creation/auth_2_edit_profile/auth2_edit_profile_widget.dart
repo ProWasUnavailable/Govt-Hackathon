@@ -110,11 +110,11 @@ class _Auth2EditProfileWidgetState extends State<Auth2EditProfileWidget>
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 24.0),
                       child: FlutterFlowIconButton(
-                        borderColor: FlutterFlowTheme.of(context).accent4,
+                        borderColor: FlutterFlowTheme.of(context).accent1,
                         borderRadius: 12.0,
-                        borderWidth: 1.0,
+                        borderWidth: 13.0,
                         buttonSize: 40.0,
-                        fillColor: FlutterFlowTheme.of(context).accent4,
+                        fillColor: FlutterFlowTheme.of(context).accent1,
                         icon: Icon(
                           Icons.arrow_back_rounded,
                           color: FlutterFlowTheme.of(context).primaryText,

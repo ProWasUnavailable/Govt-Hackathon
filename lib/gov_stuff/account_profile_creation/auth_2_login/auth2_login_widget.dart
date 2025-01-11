@@ -366,7 +366,7 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget>
                                   }
 
                                   context.goNamedAuth(
-                                      'auth_2_Login', context.mounted);
+                                      'Start_Page', context.mounted);
                                 },
                                 text: 'Sign In',
                                 options: FFButtonOptions(

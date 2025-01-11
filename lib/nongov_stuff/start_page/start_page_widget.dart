@@ -93,7 +93,7 @@ class _StartPageWidgetState extends State<StartPageWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 1.0, 0.0),
                   iconPadding:
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: const Color(0xFF7A0820),
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Inter Tight',
                         color: Colors.white,
@@ -106,7 +106,7 @@ class _StartPageWidgetState extends State<StartPageWidget> {
               FFButtonWidget(
                 onPressed: () async {
                   context.pushNamed(
-                    'Start_Page',
+                    'auth_2_Profile',
                     extra: <String, dynamic>{
                       kTransitionInfoKey: const TransitionInfo(
                         hasTransition: true,
@@ -118,7 +118,7 @@ class _StartPageWidgetState extends State<StartPageWidget> {
                 },
                 text: '',
                 icon: const Icon(
-                  Icons.house_sharp,
+                  Icons.person,
                   size: 30.0,
                 ),
                 options: FFButtonOptions(
@@ -126,7 +126,7 @@ class _StartPageWidgetState extends State<StartPageWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 1.0, 0.0),
                   iconPadding:
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: const Color(0xFF7A0820),
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Inter Tight',
                         color: Colors.white,
@@ -159,19 +159,15 @@ class _StartPageWidgetState extends State<StartPageWidget> {
                       ),
                 ),
               ),
-              Text(
-                'What can we do for you today?',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Inter',
-                      fontSize: 50.0,
-                      letterSpacing: 0.0,
-                    ),
-              ),
-              Container(
-                width: 100.0,
-                height: 100.0,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                child: Text(
+                  'What can we do for you today?',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Inter',
+                        fontSize: 50.0,
+                        letterSpacing: 0.0,
+                      ),
                 ),
               ),
               Row(
@@ -200,7 +196,7 @@ class _StartPageWidgetState extends State<StartPageWidget> {
                           const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       iconPadding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
+                      color: const Color(0xFF7A0820),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Inter Tight',
@@ -224,7 +220,7 @@ class _StartPageWidgetState extends State<StartPageWidget> {
                           const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       iconPadding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
+                      color: const Color(0xFF7A0820),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Inter Tight',

@@ -75,13 +75,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const Auth2LoginWidget() : const HomePageWidget(),
+          appStateNotifier.loggedIn ? const StartPageWidget() : const Ph2Widget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const Auth2LoginWidget() : const HomePageWidget(),
+              appStateNotifier.loggedIn ? const StartPageWidget() : const Ph2Widget(),
         ),
         FFRoute(
           name: 'HomePage',
@@ -152,6 +152,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ph2',
           path: '/ph2',
           builder: (context, params) => const Ph2Widget(),
+        ),
+        FFRoute(
+          name: 'updatingstuff',
+          path: '/updatingstuff',
+          builder: (context, params) => const UpdatingstuffWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -322,7 +327,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/homePage';
+            return '/ph2';
           }
           return null;
         },

@@ -94,7 +94,7 @@ class _NationalIDWidgetState extends State<NationalIDWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 1.0, 0.0),
                   iconPadding:
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: const Color(0xFF7A0820),
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Inter Tight',
                         color: Colors.white,
@@ -127,7 +127,7 @@ class _NationalIDWidgetState extends State<NationalIDWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 1.0, 0.0),
                   iconPadding:
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: const Color(0xFF7A0820),
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Inter Tight',
                         color: Colors.white,

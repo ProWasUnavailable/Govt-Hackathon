@@ -290,7 +290,9 @@ class _EditProfileAuth2WidgetState extends State<EditProfileAuth2Widget> {
             padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 12.0),
             child: FlutterFlowDropDown<String>(
               controller: _model.dropDownValueController ??=
-                  FormFieldController<String>(null),
+                  FormFieldController<String>(
+                _model.dropDownValue ??= widget.title,
+              ),
               options: const ['Government Account', 'Personal Account'],
               onChanged: (val) =>
                   safeSetState(() => _model.dropDownValue = val),
@@ -330,15 +332,15 @@ class _EditProfileAuth2WidgetState extends State<EditProfileAuth2Widget> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        'Profile has been updated!',
+                        'Profile has been updated',
                         style: FlutterFlowTheme.of(context).titleSmall.override(
                               fontFamily: 'Inter Tight',
-                              color: FlutterFlowTheme.of(context).info,
+                              color: FlutterFlowTheme.of(context).primaryText,
                               letterSpacing: 0.0,
                             ),
                       ),
                       duration: const Duration(milliseconds: 4000),
-                      backgroundColor: FlutterFlowTheme.of(context).primary,
+                      backgroundColor: FlutterFlowTheme.of(context).secondary,
                     ),
                   );
                   await widget.navigateAction?.call();

@@ -2,25 +2,25 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'passport_model.dart';
-export 'passport_model.dart';
+import 'updatingstuff_model.dart';
+export 'updatingstuff_model.dart';
 
-class PassportWidget extends StatefulWidget {
-  const PassportWidget({super.key});
+class UpdatingstuffWidget extends StatefulWidget {
+  const UpdatingstuffWidget({super.key});
 
   @override
-  State<PassportWidget> createState() => _PassportWidgetState();
+  State<UpdatingstuffWidget> createState() => _UpdatingstuffWidgetState();
 }
 
-class _PassportWidgetState extends State<PassportWidget> {
-  late PassportModel _model;
+class _UpdatingstuffWidgetState extends State<UpdatingstuffWidget> {
+  late UpdatingstuffModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PassportModel());
+    _model = createModel(context, () => UpdatingstuffModel());
   }
 
   @override
@@ -39,11 +39,11 @@ class _PassportWidgetState extends State<PassportWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: const Color(0xFFD7DBE1),
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60.0),
           child: AppBar(
-            backgroundColor: const Color(0xFF7A0820),
+            backgroundColor: FlutterFlowTheme.of(context).primary,
             automaticallyImplyLeading: false,
             title: Row(
               mainAxisSize: MainAxisSize.max,
@@ -93,7 +93,7 @@ class _PassportWidgetState extends State<PassportWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 1.0, 0.0),
                   iconPadding:
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: const Color(0xFF7A0820),
+                  color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Inter Tight',
                         color: Colors.white,
@@ -118,7 +118,7 @@ class _PassportWidgetState extends State<PassportWidget> {
                 },
                 text: '',
                 icon: const Icon(
-                  Icons.house_sharp,
+                  Icons.home,
                   size: 30.0,
                 ),
                 options: FFButtonOptions(
@@ -126,7 +126,7 @@ class _PassportWidgetState extends State<PassportWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 1.0, 0.0),
                   iconPadding:
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: const Color(0xFF7A0820),
+                  color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Inter Tight',
                         color: Colors.white,

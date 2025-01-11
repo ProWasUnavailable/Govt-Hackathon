@@ -22,3 +22,4 @@ export '/nongov_stuff/announcements/announcements_widget.dart'
     show AnnouncementsWidget;
 export '/placeholder/placeholder_widget.dart' show PlaceholderWidget;
 export '/ph2/ph2_widget.dart' show Ph2Widget;
+export '/updatingstuff/updatingstuff_widget.dart' show UpdatingstuffWidget;

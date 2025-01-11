@@ -1,2 +1,7 @@
-# Govt-Hackathon
-Our project for Innolympics 2025
+# Govern
+
+A new Flutter project.
+
+## Getting Started
+
+FlutterFlow projects are built to run on the Flutter _stable_ release.

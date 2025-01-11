@@ -142,6 +142,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Announcements',
           path: '/announcements',
           builder: (context, params) => const AnnouncementsWidget(),
+        ),
+        FFRoute(
+          name: 'placeholder',
+          path: '/placeholder',
+          builder: (context, params) => const PlaceholderWidget(),
+        ),
+        FFRoute(
+          name: 'ph2',
+          path: '/ph2',
+          builder: (context, params) => const Ph2Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

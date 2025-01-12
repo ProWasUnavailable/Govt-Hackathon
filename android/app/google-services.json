@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:206894617154:android:0dbe5036af5c02014813db",
+        "android_client_info": {
+          "package_name": "docukept.ph"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ2FPuSVSdaTAQJKjHjC0ybpM0of626wY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:206894617154:android:245c4846f8f300af4813db",
         "android_client_info": {
           "package_name": "govern.ph"

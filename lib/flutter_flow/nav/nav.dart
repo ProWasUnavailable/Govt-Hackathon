@@ -75,33 +75,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const Auth2LoginWidget() : const HomePageWidget(),
+          appStateNotifier.loggedIn ? const HomepageWidget() : const Auth2LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const Auth2LoginWidget() : const HomePageWidget(),
-        ),
-        FFRoute(
-          name: 'HomePage',
-          path: '/homePage',
-          builder: (context, params) => const HomePageWidget(),
-        ),
-        FFRoute(
-          name: 'National_ID',
-          path: '/nationalID',
-          builder: (context, params) => const NationalIDWidget(),
-        ),
-        FFRoute(
-          name: 'Passport',
-          path: '/passport',
-          builder: (context, params) => const PassportWidget(),
-        ),
-        FFRoute(
-          name: 'Start_Page',
-          path: '/startPage',
-          builder: (context, params) => const StartPageWidget(),
+              appStateNotifier.loggedIn ? const HomepageWidget() : const Auth2LoginWidget(),
         ),
         FFRoute(
           name: 'auth_2_Create',
@@ -134,14 +114,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const Auth2EditProfileWidget(),
         ),
         FFRoute(
-          name: 'Drivers_License',
-          path: '/driversLicense',
-          builder: (context, params) => const DriversLicenseWidget(),
+          name: 'placeholder',
+          path: '/placeholder',
+          builder: (context, params) => const PlaceholderWidget(),
         ),
         FFRoute(
-          name: 'Announcements',
-          path: '/announcements',
-          builder: (context, params) => const AnnouncementsWidget(),
+          name: 'homepage',
+          path: '/homepage',
+          builder: (context, params) => const HomepageWidget(),
+        ),
+        FFRoute(
+          name: 'ViewProfile',
+          path: '/viewProfile',
+          builder: (context, params) => const ViewProfileWidget(),
+        ),
+        FFRoute(
+          name: 'updatingstuff',
+          path: '/updatingstuff',
+          builder: (context, params) => const UpdatingstuffWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -312,7 +302,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/homePage';
+            return '/auth2Login';
           }
           return null;
         },

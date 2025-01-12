@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class GovernFirebaseUser extends BaseAuthUser {
-  GovernFirebaseUser(this.user);
+class DocuKeptFirebaseUser extends BaseAuthUser {
+  DocuKeptFirebaseUser(this.user);
   User? user;
   @override
   bool get loggedIn => user != null;
@@ -59,17 +59,18 @@ class GovernFirebaseUser extends BaseAuthUser {
 
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
-  static BaseAuthUser fromFirebaseUser(User? user) => GovernFirebaseUser(user);
+  static BaseAuthUser fromFirebaseUser(User? user) =>
+      DocuKeptFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> governFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> docuKeptFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = GovernFirebaseUser(user);
+        currentUser = DocuKeptFirebaseUser(user);
         return currentUser!;
       },
     );

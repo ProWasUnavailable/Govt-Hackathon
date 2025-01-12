@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -72,6 +73,8 @@ class _Auth2ProfileWidgetState extends State<Auth2ProfileWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -185,18 +188,53 @@ class _Auth2ProfileWidgetState extends State<Auth2ProfileWidget>
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(4.0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50.0),
-                                    child: CachedNetworkImage(
-                                      fadeInDuration:
-                                          const Duration(milliseconds: 500),
-                                      fadeOutDuration:
-                                          const Duration(milliseconds: 500),
-                                      imageUrl: currentUserPhoto,
-                                      width: 100.0,
-                                      height: 100.0,
-                                      fit: BoxFit.cover,
+                                  child: StreamBuilder<List<UsersRecord>>(
+                                    stream: queryUsersRecord(
+                                      singleRecord: true,
                                     ),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      List<UsersRecord> imageUsersRecordList =
+                                          snapshot.data!;
+                                      // Return an empty Container when the item does not exist.
+                                      if (snapshot.data!.isEmpty) {
+                                        return Container();
+                                      }
+                                      final imageUsersRecord =
+                                          imageUsersRecordList.isNotEmpty
+                                              ? imageUsersRecordList.first
+                                              : null;
+
+                                      return ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(50.0),
+                                        child: CachedNetworkImage(
+                                          fadeInDuration:
+                                              const Duration(milliseconds: 500),
+                                          fadeOutDuration:
+                                              const Duration(milliseconds: 500),
+                                          imageUrl: imageUsersRecord!.photoUrl,
+                                          width: 100.0,
+                                          height: 100.0,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
                               ),
@@ -474,7 +512,8 @@ class _Auth2ProfileWidgetState extends State<Auth2ProfileWidget>
                             await authManager.signOut();
                             GoRouter.of(context).clearRedirectLocation();
 
-                            context.goNamedAuth('ph2', context.mounted);
+                            context.goNamedAuth(
+                                'auth_2_Login', context.mounted);
                           },
                           text: 'Log Out',
                           options: FFButtonOptions(

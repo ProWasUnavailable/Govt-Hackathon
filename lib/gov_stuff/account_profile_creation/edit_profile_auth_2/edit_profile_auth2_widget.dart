@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -45,6 +46,8 @@ class _EditProfileAuth2WidgetState extends State<EditProfileAuth2Widget> {
     _model.yourNameTextController ??=
         TextEditingController(text: currentUserDisplayName);
     _model.yourNameFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -98,43 +101,110 @@ class _EditProfileAuth2WidgetState extends State<EditProfileAuth2Widget> {
                     width: 2.0,
                   ),
                 ),
-                child: Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(60.0),
-                          child: CachedNetworkImage(
-                            fadeInDuration: const Duration(milliseconds: 200),
-                            fadeOutDuration: const Duration(milliseconds: 200),
-                            imageUrl: valueOrDefault<String>(
-                              currentUserPhoto,
-                              'https://images.unsplash.com/photo-1499887142886-791eca5918cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxN3x8dXNlcnxlbnwwfHx8fDE2OTc4MjQ2MjZ8MA&ixlib=rb-4.0.3&q=80&w=400',
+                child: Stack(
+                  children: [
+                    const Align(
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: Stack(
+                        children: [],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: StreamBuilder<List<UsersRecord>>(
+                        stream: queryUsersRecord(
+                          singleRecord: true,
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          List<UsersRecord> uploadedImageUsersRecordList =
+                              snapshot.data!;
+                          // Return an empty Container when the item does not exist.
+                          if (snapshot.data!.isEmpty) {
+                            return Container();
+                          }
+                          final uploadedImageUsersRecord =
+                              uploadedImageUsersRecordList.isNotEmpty
+                                  ? uploadedImageUsersRecordList.first
+                                  : null;
+
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(60.0),
+                            child: CachedNetworkImage(
+                              fadeInDuration: const Duration(milliseconds: 200),
+                              fadeOutDuration: const Duration(milliseconds: 200),
+                              imageUrl: uploadedImageUsersRecord!.photoUrl,
+                              width: 300.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
                             ),
-                            width: 300.0,
-                            height: 200.0,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                          );
+                        },
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(60.0),
-                          child: CachedNetworkImage(
-                            fadeInDuration: const Duration(milliseconds: 200),
-                            fadeOutDuration: const Duration(milliseconds: 200),
-                            imageUrl: _model.uploadedFileUrl,
-                            width: 300.0,
-                            height: 200.0,
-                            fit: BoxFit.cover,
-                          ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: StreamBuilder<List<UsersRecord>>(
+                        stream: queryUsersRecord(
+                          singleRecord: true,
                         ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          List<UsersRecord> userImageUsersRecordList =
+                              snapshot.data!;
+                          // Return an empty Container when the item does not exist.
+                          if (snapshot.data!.isEmpty) {
+                            return Container();
+                          }
+                          final userImageUsersRecord =
+                              userImageUsersRecordList.isNotEmpty
+                                  ? userImageUsersRecordList.first
+                                  : null;
+
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(60.0),
+                            child: CachedNetworkImage(
+                              fadeInDuration: const Duration(milliseconds: 200),
+                              fadeOutDuration: const Duration(milliseconds: 200),
+                              imageUrl: valueOrDefault<String>(
+                                _model.uploadedFileUrl,
+                                'https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png',
+                              ),
+                              width: 300.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
+                            ),
+                          );
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),

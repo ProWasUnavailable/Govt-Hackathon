@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'placeholder_widget.dart' show PlaceholderWidget;
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,9 @@ class PlaceholderModel extends FlutterFlowModel<PlaceholderWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
 
   @override
   void initState(BuildContext context) {}

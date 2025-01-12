@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'national_i_d_widget.dart' show NationalIDWidget;
+import 'view_profile_widget.dart' show ViewProfileWidget;
 import 'package:flutter/material.dart';
 
-class NationalIDModel extends FlutterFlowModel<NationalIDWidget> {
+class ViewProfileModel extends FlutterFlowModel<ViewProfileWidget> {
   @override
   void initState(BuildContext context) {}
 

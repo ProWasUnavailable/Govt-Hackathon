@@ -69,6 +69,8 @@ class _Auth2ForgotPasswordWidgetState extends State<Auth2ForgotPasswordWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

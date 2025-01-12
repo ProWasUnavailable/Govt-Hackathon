@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -64,6 +65,8 @@ class _Auth2CreateProfileWidgetState extends State<Auth2CreateProfileWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -159,16 +162,48 @@ class _Auth2CreateProfileWidgetState extends State<Auth2CreateProfileWidget>
                     child: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
-                      child: wrapWithModel(
-                        model: _model.editProfileAuth2Model,
-                        updateCallback: () => safeSetState(() {}),
-                        child: EditProfileAuth2Widget(
-                          title: 'Create Profile',
-                          confirmButtonText: 'Save & Continue',
-                          navigateAction: () async {
-                            context.pushNamed('auth_2_Profile');
-                          },
+                      child: StreamBuilder<List<UsersRecord>>(
+                        stream: queryUsersRecord(
+                          singleRecord: true,
                         ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          List<UsersRecord> editProfileAuth2UsersRecordList =
+                              snapshot.data!;
+                          // Return an empty Container when the item does not exist.
+                          if (snapshot.data!.isEmpty) {
+                            return Container();
+                          }
+                          final editProfileAuth2UsersRecord =
+                              editProfileAuth2UsersRecordList.isNotEmpty
+                                  ? editProfileAuth2UsersRecordList.first
+                                  : null;
+
+                          return wrapWithModel(
+                            model: _model.editProfileAuth2Model,
+                            updateCallback: () => safeSetState(() {}),
+                            child: EditProfileAuth2Widget(
+                              title: 'Create Profile',
+                              confirmButtonText: 'Save & Continue',
+                              navigateAction: () async {
+                                context.pushNamed('auth_2_Profile');
+                              },
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ).animateOnPageLoad(

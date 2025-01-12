@@ -3,8 +3,12 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
+import '/custom_code/actions/index.dart' as actions;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:provider/provider.dart';
 import 'auth2_login_model.dart';
 export 'auth2_login_model.dart';
 
@@ -70,6 +74,8 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -81,6 +87,8 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -202,6 +210,13 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget>
                                 child: TextFormField(
                                   controller: _model.emailAddressTextController,
                                   focusNode: _model.emailAddressFocusNode,
+                                  onChanged: (_) => EasyDebounce.debounce(
+                                    '_model.emailAddressTextController',
+                                    const Duration(milliseconds: 2000),
+                                    () async {
+                                      FFAppState().loginAttempt = '';
+                                    },
+                                  ),
                                   autofocus: true,
                                   autofillHints: const [AutofillHints.email],
                                   obscureText: false,
@@ -272,6 +287,13 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget>
                                 child: TextFormField(
                                   controller: _model.passwordTextController,
                                   focusNode: _model.passwordFocusNode,
+                                  onChanged: (_) => EasyDebounce.debounce(
+                                    '_model.passwordTextController',
+                                    const Duration(milliseconds: 2000),
+                                    () async {
+                                      FFAppState().loginAttempt = '';
+                                    },
+                                  ),
                                   autofocus: true,
                                   autofillHints: const [AutofillHints.password],
                                   obscureText: !_model.passwordVisibility,
@@ -348,11 +370,84 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget>
                                 ),
                               ),
                             ),
+                            Builder(
+                              builder: (context) {
+                                if (FFAppState().loginAttempt == '') {
+                                  return Text(
+                                    ' ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  );
+                                } else if (FFAppState().loginAttempt ==
+                                    'invalid-credential') {
+                                  return Text(
+                                    'Invalid Login Credentials',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  );
+                                } else if (FFAppState().loginAttempt ==
+                                    'too-many-requests') {
+                                  return Text(
+                                    'Too Many Requests',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  );
+                                } else if (FFAppState().loginAttempt ==
+                                    'unknown') {
+                                  return Text(
+                                    'Credentials do not match.',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  );
+                                } else {
+                                  return Text(
+                                    ' ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  );
+                                }
+                              },
+                            ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  unawaited(
+                                    () async {
+                                      await actions.signIn(
+                                        context,
+                                        _model.emailAddressTextController.text,
+                                        _model.passwordTextController.text,
+                                      );
+                                    }(),
+                                  );
                                   GoRouter.of(context).prepareAuthEvent();
 
                                   final user =
@@ -366,7 +461,7 @@ class _Auth2LoginWidgetState extends State<Auth2LoginWidget>
                                   }
 
                                   context.goNamedAuth(
-                                      'Start_Page', context.mounted);
+                                      'homepage', context.mounted);
                                 },
                                 text: 'Sign In',
                                 options: FFButtonOptions(

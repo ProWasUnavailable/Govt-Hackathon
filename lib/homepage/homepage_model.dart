@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'ph2_widget.dart' show Ph2Widget;
+import 'homepage_widget.dart' show HomepageWidget;
 import 'package:flutter/material.dart';
 
-class Ph2Model extends FlutterFlowModel<Ph2Widget> {
+class HomepageModel extends FlutterFlowModel<HomepageWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for MouseRegion widget.

@@ -5,18 +5,19 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'ph2_model.dart';
-export 'ph2_model.dart';
+import 'homepage_model.dart';
+export 'homepage_model.dart';
 
-class Ph2Widget extends StatefulWidget {
-  const Ph2Widget({super.key});
+class HomepageWidget extends StatefulWidget {
+  const HomepageWidget({super.key});
 
   @override
-  State<Ph2Widget> createState() => _Ph2WidgetState();
+  State<HomepageWidget> createState() => _HomepageWidgetState();
 }
 
-class _Ph2WidgetState extends State<Ph2Widget> with TickerProviderStateMixin {
-  late Ph2Model _model;
+class _HomepageWidgetState extends State<HomepageWidget>
+    with TickerProviderStateMixin {
+  late HomepageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -25,7 +26,7 @@ class _Ph2WidgetState extends State<Ph2Widget> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => Ph2Model());
+    _model = createModel(context, () => HomepageModel());
 
     animationsMap.addAll({
       'textOnActionTriggerAnimation1': AnimationInfo(
@@ -35,7 +36,7 @@ class _Ph2WidgetState extends State<Ph2Widget> with TickerProviderStateMixin {
           ScaleEffect(
             curve: Curves.linear,
             delay: 0.0.ms,
-            duration: 0.0.ms,
+            duration: 150.0.ms,
             begin: const Offset(1.0, 1.0),
             end: const Offset(1.2, 1.2),
           ),
@@ -48,7 +49,7 @@ class _Ph2WidgetState extends State<Ph2Widget> with TickerProviderStateMixin {
           ScaleEffect(
             curve: Curves.linear,
             delay: 0.0.ms,
-            duration: 0.0.ms,
+            duration: 150.0.ms,
             begin: const Offset(1.0, 1.0),
             end: const Offset(1.2, 1.2),
           ),
@@ -61,7 +62,7 @@ class _Ph2WidgetState extends State<Ph2Widget> with TickerProviderStateMixin {
           ScaleEffect(
             curve: Curves.linear,
             delay: 0.0.ms,
-            duration: 0.0.ms,
+            duration: 150.0.ms,
             begin: const Offset(1.0, 1.0),
             end: const Offset(1.2, 1.2),
           ),
@@ -74,7 +75,7 @@ class _Ph2WidgetState extends State<Ph2Widget> with TickerProviderStateMixin {
           ScaleEffect(
             curve: Curves.linear,
             delay: 0.0.ms,
-            duration: 0.0.ms,
+            duration: 150.0.ms,
             begin: const Offset(1.0, 1.0),
             end: const Offset(1.2, 1.2),
           ),
@@ -87,6 +88,8 @@ class _Ph2WidgetState extends State<Ph2Widget> with TickerProviderStateMixin {
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -115,32 +118,23 @@ class _Ph2WidgetState extends State<Ph2Widget> with TickerProviderStateMixin {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    context.pushNamed('Start_Page');
-                  },
-                  child: Text(
-                    'DocuKept',
-                    textAlign: TextAlign.start,
-                    style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          fontFamily: 'Inter Tight',
-                          color: Colors.white,
-                          fontSize: 28.0,
-                          letterSpacing: 1.4,
-                          shadows: [
-                            Shadow(
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              offset: const Offset(0.5, 0.5),
-                              blurRadius: 2.0,
-                            )
-                          ],
-                          lineHeight: 1.25,
-                        ),
-                  ),
+                Text(
+                  'DocuKept',
+                  textAlign: TextAlign.start,
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Inter Tight',
+                        color: Colors.white,
+                        fontSize: 28.0,
+                        letterSpacing: 1.4,
+                        shadows: [
+                          Shadow(
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            offset: const Offset(0.5, 0.5),
+                            blurRadius: 2.0,
+                          )
+                        ],
+                        lineHeight: 1.25,
+                      ),
                 ),
               ],
             ),
@@ -172,7 +166,7 @@ class _Ph2WidgetState extends State<Ph2Widget> with TickerProviderStateMixin {
               FFButtonWidget(
                 onPressed: () async {
                   context.pushNamed(
-                    'Start_Page',
+                    'auth_2_Profile',
                     extra: <String, dynamic>{
                       kTransitionInfoKey: const TransitionInfo(
                         hasTransition: true,
